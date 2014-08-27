@@ -1,21 +1,31 @@
 from django.db import models
+from django.contrib.auth.models import User #, Permission
 
 # Create your models here.
 
-class User(models.Model):
-    name = models.CharField(max_length=50)
-    email = models.EmailField()
-    join_date = models.DateTimeField('date joined')
-    #pass_hash #TODO
+
+################################################################################
+##############################    Authorization   ##############################
+################################################################################
+
+
+
+################################################################################
+##############################      DB Models     ##############################
+################################################################################
+
+
+# Old User class. Now using User class from django contrib.auth.models!
+# User descriptions: need one-to-one relationship such as:
+class UserDescription(models.Model):
+    ref = models.OneToOneField(User)
+    about = models.CharField(max_length=1000)
     affiliation = models.CharField(max_length=100)
-    #comment_list = models.ForeignKey(Comment) # TODO: change to have User and Protocol reference the same comment space in db? store primary keys of protocol comments as integers?
-    about = models.CharField(max_length=500) # short biography
-    #picture = models.FileField() #TODO: use correct argument options
-    #access_level #TODO: can this be done through django.contrib.auth?
+    #picture = models.FileFIeld() #TODO: user correct argument options
     
     def __str__(self):
-        return self.name
-    
+        return self.ref
+
 
 class Keyword(models.Model):
     word = models.CharField(max_length=25)
