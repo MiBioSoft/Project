@@ -24,5 +24,5 @@ class ProtocolAdmin(admin.ModelAdmin):
     search_fields = ['title'] #TODO: keywords too
     
 
-admin.site.register(User)
-admin.site.register(Protocol, ProtocolAdmin)
+#admin.site.register(User)
+#admin.site.register(Protocol, ProtocolAdmin)
