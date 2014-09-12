@@ -3,10 +3,10 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
-from databasemodels.forms import UserForm
+from databasemodels.forms import UserForm, ProtocolForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-
+from databasemodels.models import UserDescription, Protocol
 
 from django.template import RequestContext
 # Create your views here.
@@ -55,9 +55,6 @@ def register(request):
             'register.html',
             {'user_form': user_form, 'registered': registered},
             context)
-
-
-
 
 def user_login(request):
     # Like before, obtain the context for the user's request.
@@ -116,6 +113,42 @@ def home(request):
     home_template = get_template('home.html')
     return render(request, 'home.html')
     return HttpResponse(html)
+
+
+@login_required
+def create_protocol(request):
+    context = RequestContext(request)
+
+    created = False
+
+    if request.method == 'POST':
+        
+        protocol_form = ProtocolForm(data=request.POST)
+        print(request.user.id)
+        
+        print(protocol_form) #= UserDescription.objects.get(id = request.user.id)
+        if protocol_form.is_valid():
+            #Protocol.publisher = request.user.id
+            #print(Protocol.objects.all())
+            #print(protocol_form)
+            protocol = protocol_form.save()
+            
+            #protocol.save()
+            #protocol.publisher = 
+            created = True
+        else:
+            #do protocol_form.errors
+            pass
+
+    else:
+        #created = False
+        protocol_form = ProtocolForm()
+        #print(request.user.id)
+
+    return render_to_response(
+        'create_protocol.html',
+        {'protocol_form': protocol_form, 'created': created},
+        context)
 
 #def about(request):
     

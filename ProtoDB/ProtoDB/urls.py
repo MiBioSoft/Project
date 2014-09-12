@@ -15,4 +15,5 @@ urlpatterns = patterns('',
     url(r'^login/$', 'databasemodels.views.user_login'),
     url(r'^restricted/$', 'databasemodels.views.restricted'),
     url(r'^logout/$', 'databasemodels.views.user_logout'),
+    url(r'^create_protocol/$', 'databasemodels.views.create_protocol'),
 )
