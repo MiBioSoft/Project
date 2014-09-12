@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from databasemodels.models import User, Protocol, Comment
+from databasemodels.models import User, Protocol, Comment, UserDescription
 
 
 
@@ -24,5 +24,5 @@ class ProtocolAdmin(admin.ModelAdmin):
     search_fields = ['title'] #TODO: keywords too
     
 
-#admin.site.register(User)
+admin.site.register(UserDescription)
 #admin.site.register(Protocol, ProtocolAdmin)
