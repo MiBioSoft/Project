@@ -6,7 +6,7 @@ from django.template.loader import get_template
 from databasemodels.forms import UserForm, ProtocolForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from databasemodels.models import UserDescription, Protocol
+from databasemodels.models import *
 
 from django.template import RequestContext
 # Create your views here.
@@ -116,22 +116,26 @@ def home(request):
 
 
 @login_required
-def create_protocol(request):
+def create_protocol(request, **kwargs):
     context = RequestContext(request)
 
     created = False
 
     if request.method == 'POST':
         
-        protocol_form = ProtocolForm(data=request.POST)
-        print(request.user.id)
         
-        print(protocol_form) #= UserDescription.objects.get(id = request.user.id)
+        print(request.user.id)
+        #aaa = request.user
+        #print(protocol_form) #= UserDescription.objects.get(id = request.user.id)
+        protocol_form = ProtocolForm(data=request.POST)
         if protocol_form.is_valid():
-            #Protocol.publisher = request.user.id
+            #print(Protocol.publisher)
+            #Protocol.publisher = request.user
             #print(Protocol.objects.all())
             #print(protocol_form)
-            protocol = protocol_form.save()
+            bbb = protocol_form.save(commit=False)
+            bbb.publisher = request.user
+            bbb.save()
             
             #protocol.save()
             #protocol.publisher = 
@@ -150,5 +154,7 @@ def create_protocol(request):
         {'protocol_form': protocol_form, 'created': created},
         context)
 
+#def protocol_list(request):
+    
 #def about(request):
     

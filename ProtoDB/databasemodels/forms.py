@@ -14,9 +14,17 @@ class UserForm(forms.ModelForm):
 class ProtocolForm(forms.ModelForm):
     class Meta:
         model = Protocol
-        exclude = ["publisher"]
+        exclude = ["publisher","keywords"]
         #fields = ('title', 'description', 'keywords', 'text')
-
+##    def create_view(request, **kwargs):
+##        if request.method == "POST"
+##            aaa = request.user
+##            form = ProtocolForm(request.POST)
+##            if form.is_valid():
+##                bbb = form.save(commit = False)
+##                bbb.key_field = aaa
+##                bbb.save()
+##                
 
 ##    def clean_publisher(self):
 ##        if not self.cleaned_data['publisher']:
