@@ -3,12 +3,10 @@
     <type>org.netbeans.modules.python.project</type>
     <configuration>
         <data xmlns="http://nbpython.dev.java.net/ns/php-project/1">
-            <name>ProtoDB</name>
+            <name>ProtoCat</name>
             <sources>
-                <root id="databasemodels.dir"/>
-                <root id="ProtoDB.dir"/>
-                <root id="static.dir"/>
-                <root id="templates.dir"/>
+                <root id="src.ProtoDB.dir"/>
+                <root id="src.dir"/>
             </sources>
             <tests/>
         </data>

@@ -39,7 +39,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'databasemodels',
+    'django.contrib.admin',
+    'django.contrib.admindocs',
 )
+
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -83,3 +87,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#redirects to login page is access to page is retricted
+LOGIN_URL = '/login/'
+#end sessoin after an hour
+SESSION_COOKIE_AGE = 3600
+#if browser is closed, logout by ending session
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

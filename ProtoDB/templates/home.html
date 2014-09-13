@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% if user.is_authenticated %}
+<h3>Welcome {{ user.username }}!</h3>
+{% endif %}
+	<title>ProtoCat - Protocol Catalogue and Calculator</title>
+	<meta charset="utf-8" />
+	
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body class="body">
+	
+	<header class="mainHeader">
+
+		<h1> ProtoCat </h1>
+		<nav><ul>
+			<li class="active"><a href="#">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">My Protocols</a></li>
+			<li><a href="#">Catalog</a></li>
+		</ul></nav>
+	</header>
+		
+	<div class="mainContent">
+		<div class="content">	
+				<article class="topcontent">	
+					<header>
+						<h2><a href="#" rel="bookmark" title="Permalink to this POST TITLE">Home</a></h2>
+					</header>					
+					<content>
+						<p>Welcome to ProtoDB, the free online catalogue of laboratory protocols. With over [number] protocols and a built-in calculator, we are simplifying laboratory procedures one protocol at a time.</p>	</content>
+					
+				</article>
+		</div>	
+		
+	
+		<aside class="top-sidebar">
+				<article>
+					<h2>Top Rated</h2>
+					
+           			 <ol>
+              				<li><a href="#">Pro1</a></li>
+          				     <li><a href="#">Pro2</a></li>                						<li><a href="#">Pro3</a></li>
+            			</ol>
+
+				 </article>
+		</aside>
+
+		<img src="img/blue_test_tubes.jpg">
+		
+		<aside class="middle-sidebar">
+					<article>
+					<h2>Top Favorited</h2>
+					<ol>
+              				<li><a href="#">Pro1</a></li>
+          				     <li><a href="#">Pro2</a></li>                						<li><a href="#">Pro3</a></li>
+            			</ol>
+
+				    </article>
+				</aside>				
+
+		<aside class="bottom-sidebar">
+					<article>
+					<h2>Recent Uploads</h2>
+					<ol>
+              				<li><a href="#">Pro1</a></li>
+          				     <li><a href="#">Pro2</a></li>                						<li><a href="#">Pro3</a></li>
+            			</ol>
+
+				    </article>
+				</aside>	
+	</div>
+	
+	<footer class="mainFooter">
+		<p>Copyright &copy; 2013 <a href="http://1stwebdesigner.com">1stwebdesigner</a></p>
+		<p> Team info! </p>
+	</footer>
+
+</body>
+</html>

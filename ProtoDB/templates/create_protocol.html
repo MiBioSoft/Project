@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	{% if user.is_authenticated %}
+	<h3>Welcome {{ user.username }}!</h3>
+	{% endif %}
+        <title>Create Protocol</title>
+    </head>
+
+    <body>
+	
+        
+	{% if created %}
+	<h1> Awesome! </h1>
+	<strong> Protocol has been created! </strong>
+	<a href="/home/">Return to the homepage.</a><br />
+	{% else %}
+	<h1> Create Your Protocol! </h1>
+        <form id="protocol_form" method="post" action="/create_protocol/" enctypeypw="multipart/form-data">
+
+            {% csrf_token %}
+
+            {{protocol_form.as_p}}
+
+            <input type="submit" name="submit" value="Create Protocol!">
+
+        </form>
+	{% endif %}
+    </body>
+</html>
