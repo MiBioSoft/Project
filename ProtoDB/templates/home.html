@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+{% load staticfiles %}
 {% if user.is_authenticated %}
-<h3>Welcome {{ user.username }}!</h3>
+    <h3>Welcome {{ user.username }}!</h3>
 {% endif %}
 	<title>ProtoCat - Protocol Catalogue and Calculator</title>
 	<meta charset="utf-8" />
-	
-	<link rel="stylesheet" href="style.css" type="text/css" />
+        
+	<link rel="stylesheet" type="text/css" href="{% static 'databasemodels/style.css' %}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
