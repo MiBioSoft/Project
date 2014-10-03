@@ -16,4 +16,7 @@ urlpatterns = patterns('',
     url(r'^restricted/$', 'databasemodels.views.restricted'),
     url(r'^logout/$', 'databasemodels.views.user_logout'),
     url(r'^create_protocol/$', 'databasemodels.views.create_protocol'),
+    url(r'^protocol_list/$', 'databasemodels.views.protocol_list'),
+    url(r'^view/(?P<slug>[^\.]+).html', 'databasemodels.views.protocol',name='protocol'),
+    (r'^comments/', include('django.contrib.comments.urls')),
 )

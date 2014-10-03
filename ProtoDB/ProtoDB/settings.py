@@ -41,6 +41,8 @@ INSTALLED_APPS = (
     'databasemodels',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'django.contrib.comments',
+    'django.contrib.sites',
 )
 
 
@@ -53,7 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
-
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 ROOT_URLCONF = 'ProtoDB.urls'
 
 WSGI_APPLICATION = 'ProtoDB.wsgi.application'
@@ -85,7 +87,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-
+SITE_ID = 1
 STATIC_URL = '/static/'
 
 #redirects to login page is access to page is retricted

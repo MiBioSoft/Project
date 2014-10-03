@@ -38,15 +38,27 @@ class Protocol(models.Model):
     publisher = models.ForeignKey(User, blank=True) # who published the protocol
     pub_date = models.DateTimeField(auto_now=True) #sets field to now everytime it is saved. use auto_now_add to only add time when object first created
     title = models.CharField(max_length=100) # title of the protocol
-    description = models.CharField(max_length=500) # short description for the protocol when browsing
+    description = models.CharField(max_length=1000) # short description for the protocol when browsing
     #keywords = models.CharField(max_length=500)#many-to-many not supported error
     keywords = models.ManyToManyField(Keyword, blank=True) # keywords for searching for protocols, not required
     text = models.TextField() # all details and descriptions for the protocol
+    slug = models.SlugField(unique=True)
     #calc_methods = models.Field(CustomField) # calculator part - later! Within: need list of parameters and dependencies
     
     def __str__(self):
         return self.title
+
+    @models.permalink
+    def get_absolute_url(self):
+        return 'protocol', (self.slug,)
     
+class Reagent(models.Model):
+    protocol = models.ForeignKey(Protocol)
+    item = models.CharField(max_length = 500)
+    link = models.URLField()
+
+    def __str__(self):
+        return self.link
     
 class Comment(models.Model):
     protocol = models.ForeignKey(Protocol) # many comments for one protocol

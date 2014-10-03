@@ -1,0 +1,76 @@
+<html>
+{% load comments %}
+<strong> {% block title %}Title: {{ protocol.title }} {% endblock %} </strong>
+<br>
+<br>
+{% block pub %}Publisher: {{ protocol.publisher }} {% endblock %}
+<br>
+<br>
+{% block desc %}Description: {{ protocol.description }} {% endblock %}
+<br>
+<br>
+{% block date %}Date Published: {{ protocol.pub_date }} {% endblock %}
+<br>
+<br>
+{% block content %}Protocol Text: {{ protocol.text }} {% endblock %}
+
+<br>
+
+{% if user.is_authenticated %}
+
+	{% ifequal user.username protocol.publisher|stringformat:"s" %}	
+<br>
+<form action="" method = "post">
+{% csrf_token %}
+	<input type="submit" name="delete" value="Delete Protocol" 
+onclick="return confirm('Are you sure you want to delete the protocol? This is permanent!')" />
+	
+</form>
+{% get_comment_list for protocol as comment_list %}
+
+{% endifequal %}
+{% endif %}
+<h2>Post a comment</h2>
+
+
+{% if user.is_authenticated %}
+
+
+{% get_comment_form for protocol as form %}
+
+
+
+    <form action="{% comment_form_target %}" method="POST">
+
+
+
+    {% csrf_token %}
+    {{ form.comment }}
+   
+    {{ form.content_type }}
+    {{ form.object_pk }}
+    {{ form.timestamp }}
+    {{ form.security_hash }}
+    <br>
+
+    <input type="submit" value="Add comment" id="id_submit" onclick="alert('Thanks for commenting!')" />
+<input type="hidden" name="next" value="{{ protocol.get_absolute_url }}" />
+
+	
+    </form>
+
+
+
+{% else %}
+
+{% with protocol.get_absolute_url as next %}
+ {% render_comment_form for protocol %}
+ 
+{% endwith %}
+
+
+{% endif %}
+
+
+{% render_comment_list for protocol %}
+</html>
