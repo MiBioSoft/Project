@@ -6,7 +6,7 @@ RawBlameHistory
 {% if user.is_authenticated %}
     <h3>Welcome {{ user.username }}!</h3>
 {% endif %}
-	<title>ProtoCat - Protocol Catalogue and Calculator</title>
+	<title>ProtoCat - The Protocol Repository</title>
 	<meta charset="utf-8" />
         
 	<link rel="stylesheet" type="text/css" href="{% static 'databasemodels/style.css' %}" />
@@ -21,9 +21,9 @@ RawBlameHistory
 		<h1> ProtoCat </h1>
 		<nav><ul>
 			<li class="active"><a href="#">Home</a></li>
-			<li><a href="#">About</a></li>
-			<li><a href="#">My Protocols</a></li>
-			<li><a href="#">Catalog</a></li>
+			<li><a href="protocol_list.html">Catalog</a></li>
+			<li><a href="login.html">My Account</a></li>
+			<li><a href="about.html">About</a></li>
 		</ul></nav>
 	</header>
 		
@@ -34,7 +34,7 @@ RawBlameHistory
 						<h2><a href="#" rel="bookmark" title="Permalink to this POST TITLE">Home</a></h2>
 					</header>					
 					<content>
-						<p>Welcome to ProtoDB, the free online catalogue of laboratory protocols. With over [number] protocols and a built-in calculator, we are simplifying laboratory procedures one protocol at a time.</p>	</content>
+						<p>Welcome to ProtoCat, the free online catalogue of laboratory protocols. With over [number] protocols, we are simplifying laboratory procedures one protocol at a time.</p>	</content>
 					
 				</article>
 		</div>	
@@ -78,7 +78,6 @@ RawBlameHistory
 	</div>
 	
 	<footer class="mainFooter">
-		<p>Copyright &copy; 2013 <a href="http://1stwebdesigner.com">1stwebdesigner</a></p>
 		<p> Team info! </p>
 	</footer>
 
