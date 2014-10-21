@@ -17,14 +17,3 @@ class ProtocolForm(forms.ModelForm):
         model = Protocol
         exclude = ["publisher","keywords","slug"]
 
-##    def save(self):
-##        instance = super(ProtocolForm, self).save(commit=False)
-##        instance.slug = orig = slugify(instance.title)
-##
-##        for x in itertools.count(1):
-##            if not Protocol.objects.filter(slug=instance.slug).exists():
-##                break
-##            instance.slug = '%s-%d' % (orig,x)
-##        instance.save()
-##
-##        return instance

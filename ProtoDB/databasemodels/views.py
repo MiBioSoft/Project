@@ -12,6 +12,7 @@ from django.utils.text import slugify
 from django.core import serializers
 from django.template import RequestContext
 # Create your views here.
+
 def register(request):
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
@@ -20,7 +21,6 @@ def register(request):
             #saves as hashed so that authenticate will work
             ref.set_password(request.POST['password'])
             ref.save()
-            #messages.info(request, "Thanks for registering. You're logged in!")
             reft = authenticate(username=request.POST['username'],
                                password=request.POST['password'])
             
@@ -29,111 +29,52 @@ def register(request):
         else:
             pass
 
-    # Not a HTTP POST, so we render our form using two ModelForm instances.
-    # These forms will be blank, ready for user input.
+
     else:
         user_form = UserForm()
         
-##    # Render the template depending on the context.
+   # Render the template depending on the context.
     return render_to_response(
             'register.html',
             {'user_form': user_form,},
             context_instance=RequestContext(request))
-##def register(request):
-##    # Like before, get the request's context.
-##    context = RequestContext(request)
-##
-##    # A boolean value for telling the template whether the registration was successful.
-##    # Set to False initially. Code changes value to True when registration succeeds.
-##    registered = False
-##
-##    # If it's a HTTP POST, we're interested in processing form data.
-##    if request.method == 'POST':
-##        # Attempt to grab information from the raw form information.
-##        # Note that we make use of UserForm
-##        user_form = UserForm(data=request.POST)
-##        
-##
-##        # If the two forms are valid...
-##        if user_form.is_valid():
-##            # Save the user's form data to the database.
-##            ref = user_form.save()
-##
-##            # Now we hash the password with the set_password method.
-##            # Once hashed, we can update the user object.
-##            ref.set_password(ref.password)
-##            ref.save()
-##
-##            # Update our variable to tell the template registration was successful.
-##            registered = True
-##            #return HttpResponseRedirect("/login/")
-##
-##        # Invalid form or forms - mistakes or something else?
-##        # Print problems to the terminal.
-##        # They'll also be shown to the user.
-##        else:
-##            pass
-##
-##    # Not a HTTP POST, so we render our form using two ModelForm instances.
-##    # These forms will be blank, ready for user input.
-##    else:
-##        user_form = UserForm()
-##        
-##    # Render the template depending on the context.
-##    return render_to_response(
-##            'register.html',
-##            {'user_form': user_form, 'registered': registered},
-##            context)
-
 def user_login(request):
-    # Like before, obtain the context for the user's request.
+
     context = RequestContext(request)
 
     # If the request is a HTTP POST, try to pull out the relevant information.
     if request.method == 'POST':
-        # Gather the username and password provided by the user.
-        # This information is obtained from the login form.
+
         username = request.POST['username']
         password = request.POST['password']
-
-        # Use Django's machinery to attempt to see if the username/password
-        # combination is valid - a User object is returned if it is.
+        #authenticates username and pwd
         user = authenticate(username=username, password=password)
 
         # If we have a User object, the details are correct.
-        # If None (Python's way of representing the absence of a value), no user
-        # with matching credentials was found.
         if user:
             # Is the account active? It could have been disabled.
             if user.is_active:
                 # If the account is valid and active, we can log the user in.
-                # We'll send the user back to the homepage.
+                #send the user back to the homepage.
                 login(request, user)
                 return HttpResponseRedirect('/home/')
-            else:
-                # An inactive account was used - no logging in!
-                return HttpResponse("Your Rango account is disabled.")
+
         else:
-            # Bad login details were provided. So we can't log the user in.
-           # print "Invalid login details"
+            
             return HttpResponse("Invalid login details supplied.")
 
-    # The request is not a HTTP POST, so display the login form.
-    # This scenario would most likely be a HTTP GET.
+
     else:
-        # No context variables to pass to the template system, hence the
-        # blank dictionary object...
         return render_to_response('login.html', {}, context)
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
 @login_required
 def user_logout(request):
-    # Since we know the user is logged in, we can now just log them out.
     logout(request)
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/home/')
-    
+#This function is only to validate if user is logged in.   
 @login_required
 def restricted(request):
     return HttpResponse("Since you're logged in, you can see this text!")
@@ -152,16 +93,18 @@ def create_protocol(request, **kwargs):
     
     if request.method == 'POST':
         
-        #print(protocol_form) #= UserDescription.objects.get(id = request.user.id)
+        
         protocol_form = ProtocolForm(data=request.POST)
-        #new_url = ""
+  
         if protocol_form.is_valid():
 
-            
+            #commit = False doesn't save, but still creates instance.
             bbb = protocol_form.save(commit=False)
+            #makes the publisher equal the current user
             bbb.publisher = request.user
+            #slugifys the title (adds "-" instead of spaces)
             bbb.slug = orig = slugify(bbb.title)
-
+            # if the slug doesnt exist, do nothing. if it does, add number to it
             for x in itertools.count(1):
                 if not Protocol.objects.filter(slug=bbb.slug).exists():
                     break
@@ -189,7 +132,7 @@ def create_protocol(request, **kwargs):
 
 
 def protocol(request, slug):
-    
+     #render protocol, allow deletion if logged in (thru template)   
     protocol = get_object_or_404(Protocol, slug=slug)
     if request.POST.get('delete'):
         protocol.delete()
@@ -199,13 +142,14 @@ def protocol(request, slug):
     })
    
 
-
+#creates a list of all protocols
 def protocol_list(request):
     all_entries = Protocol.objects.all()
     slug_tuple = Protocol.objects.values_list('slug')
     items = []
     url = ""
     title = ""
+    #takes slug and title, creates url /view/slug.html, appends to list. list is read in template
     for each in Protocol.objects.all():
         slug = each.slug
         title = each.title

@@ -10,7 +10,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^home/$', 'databasemodels.views.home'),
-    #url(r'^about/$', 'databasemodels.views.about'),
     url(r'^register/$', 'databasemodels.views.register'),
     url(r'^login/$', 'databasemodels.views.user_login'),
     url(r'^restricted/$', 'databasemodels.views.restricted'),
