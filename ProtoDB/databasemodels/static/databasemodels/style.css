@@ -143,9 +143,7 @@ a:hover, a:active {
 	-webkit-border-radius: 5px;	
 }
 
-/* ===========================
-   ======== Sidebar ========== 
-   =========================== */
+/*Sidebar*/
 
 .top-sidebar {
 	width: 22%;
@@ -182,9 +180,7 @@ a:hover, a:active {
 	padding: 2% 3%;
 }
 
-/* ===========================
-   ========= Footer ========== 
-   =========================== */
+/*Footer*/
 
 .mainFooter {
 	width: 100%;
