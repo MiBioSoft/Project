@@ -1,5 +1,4 @@
-/* Body style ======== 
-   =========================== */
+/*Body Style*/
    
 body {
 	background-image: url('img/bg.png');
@@ -18,9 +17,7 @@ body {
 	width: 70%;
 }
 	
-/* ===========================
-   ========= Headings ======== 
-   =========================== */
+/*Heading*/
 h2 {font-size: 1.571em}	/* 22px */
 h3 {font-size: 1.429em}	/* 20px */
 h4 {font-size: 1.286em}	/* 18px */
@@ -34,9 +31,7 @@ h2, h3, h4, h5, h6 {
 	color: black;
 }
 
-/* ===========================
-   ======= Anchor style ====== 
-   =========================== */
+/*Anchor style*/
 a {
 	outline: 0;
 	}
@@ -54,9 +49,7 @@ a:hover, a:active {
 	text-decoration: none;
 }
 
-/* ===========================
-   ===== Main Navigation ===== 
-   =========================== */
+/*Main Navigation*/
 
 .mainHeader h1 {
 	font-size: 400%;
@@ -66,7 +59,7 @@ a:hover, a:active {
 	color: #4682B4;
 }
    
-.mainHeader nav {
+.mainHeader n {
 	background: #4682B4;
 	font-size: 1.143em;
 	height: 40px;
@@ -109,9 +102,7 @@ a:hover, a:active {
 	-webkit-border-radius: 5px;
 }
 
-/* ===========================
-   ======= Content Area ====== 
-   =========================== */
+/*Content Area*/
 
 .mainContent {
 	overflow: hidden;
