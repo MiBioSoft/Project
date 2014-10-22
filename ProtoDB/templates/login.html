@@ -1,12 +1,42 @@
 <!DOCTYPE html>
 <html>
     <head>
+    {% load staticfiles %}
+	<meta charset="utf-8" />
         
+	<link rel="stylesheet" type="text/css" href="{% static 'databasemodels/style.css' %}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>Login</title>
     </head>
 
-    <body>
-        <h1>Login</h1>
+    <body class="body">
+	
+	<header class="mainHeader">
+
+		<h1> ProtoCat </h1>
+		<nav><ul>
+			<li class="active"><a href="/home./">Home</a></li>
+			<li><a href="/protocol_list/">Catalog</a></li>
+{% if user.is_authenticated %}			
+			<li><a href="/create_protocol/">Create Protocol</a></li>
+			<li><a href="/logout/">Logout</a></li>
+{% else %}
+			<li><a href="/login/">Login</a></li>
+			<li><a href="/register/">Create Account</a></li>
+{% endif %}
+			<li><a href="/about/">About</a></li>
+		</ul></nav>
+	</header>
+		
+	<div class="mainContent">
+		<div class="content">	
+				<article class="topcontent">	
+					<header>
+						
+					</header>					
+					<content>
+						<h1>Login</h1>
 
         <form id="login_form" method="post" action="/login/">
             {% csrf_token %}
@@ -17,6 +47,18 @@
 
             <input type="submit" value="submit" />
         </form>
+	</content>
+					
+				</article>
+		</div>	
+		
+			
 
+	
+	</div>	
+		
+    <footer class="mainFooter">
+		<p> University of Michigan iGEM Software 2014 </p>
+	</footer>  
     </body>
 </html>

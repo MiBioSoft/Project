@@ -1,16 +1,54 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="windows-1252">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html lang="en">
+<head>
+{% load staticfiles %}
+{% if user.is_authenticated %}
+    <h3>Welcome {{ user.username }}!</h3>
+{% endif %}
+	<title>ProtoCat - The Protocol Repository</title>
+	<meta charset="utf-8" />
+        
+	<link rel="stylesheet" type="text/css" href="{% static 'databasemodels/style.css' %}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body class="body">
+	
+	<header class="mainHeader">
+
+		<h1> ProtoCat </h1>
+		<nav><ul>
+			<li class="active"><a href="/home./">Home</a></li>
+			<li><a href="/protocol_list/">Catalog</a></li>
+{% if user.is_authenticated %}			
+			<li><a href="/create_protocol/">Create Protocol</a></li>
+			<li><a href="/logout/">Logout</a></li>
+{% else %}
+			<li><a href="/login/">Login</a></li>
+			<li><a href="/register/">Create Account</a></li>
+{% endif %}
+			<li><a href="/about/">About</a></li>
+		</ul></nav>
+	</header>
+		
+	<div class="mainContent">
+		<div class="content">	
+				<article class="topcontent">	
+					<header>
+						
+					</header>					
+					<content>
+					<p>Hello! This was created by the Michigan iGEM Software Team (MiST) in 2014!</p>
+					<p> For help, comments, or concerns, please contact igemsoftware-requests@umich.edu </p>
+		</div>	
+		
+	
+	</div>
+	
+	<footer class="mainFooter">
+		<p> University of Michigan iGEM Software 2014 </p>
+	</footer>
+
+</body>
 </html>
