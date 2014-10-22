@@ -18,10 +18,10 @@
 
 		<h1> ProtoCat </h1>
 		<nav><ul>
-			<li class="active"><a href="/home./">Home</a></li>
+			<li><a href="/home./">Home</a></li>
 			<li><a href="/protocol_list/">Catalog</a></li>
 {% if user.is_authenticated %}			
-			<li><a href="/create_protocol/">Create Protocol</a></li>
+			<li class="active"><a href="/create_protocol/">Create Protocol</a></li>
 			<li><a href="/logout/">Logout</a></li>
 {% else %}
 			<li><a href="/login/">Login</a></li>
