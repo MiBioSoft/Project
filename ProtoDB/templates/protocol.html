@@ -49,7 +49,7 @@
 {% block date %}Date Published: {{ protocol.pub_date }} {% endblock %}
 <br>
 <br>
-{% block content %}Protocol Text: {{ protocol.text }} {% endblock %}
+{% block content %}Protocol Text: {{ protocol.text|linebreaks }} {% endblock %}
 
 <br>
 
